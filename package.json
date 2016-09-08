@@ -1,0 +1,32 @@
+{
+  "name": "fs08-assignment2-countries",
+  "version": "1.0.0",
+  "description": "> Manipulate, Sort, and Build a Countries Management Tool",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "code": "^3.0.2",
+    "eslint": "^3.4.0",
+    "eslint-config-pundits": "^1.0.0",
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "_mocha test",
+    "test:watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://TylerGarlick@github.com/helio-training/fs08-assignment2-countries.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/helio-training/fs08-assignment2-countries/issues"
+  },
+  "homepage": "https://github.com/helio-training/fs08-assignment2-countries#readme"
+}
