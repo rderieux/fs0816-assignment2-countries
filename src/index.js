@@ -2,8 +2,9 @@ const countries = require('world-countries');
 
 module.exports = {
 
-
-  add(x = 0, y = 0) {},
+  add(x = 0, y = 0) {
+    return x + y;
+  },
 
   all(settings = {loadAll: false, index: 0, pageSize: 15}){
     // check if load all is true
