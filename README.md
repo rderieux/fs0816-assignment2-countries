@@ -238,4 +238,3 @@ const results = Countries.findBySubRegion('Northern America');
 
 > Calculates the distance using the longitude and latitude.
 
-

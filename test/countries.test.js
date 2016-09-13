@@ -37,14 +37,15 @@ describe('Countries', () => {
     });
 
     it(`fetches a 15 countries by default, and the first page of data`, () => {
-      const result = Countries.all();
+      const result = Countries.all({ index: 0, pageSize: 15});
 
       expect(result.length).to.equal(15);
     });
 
     it(`fetches a 15 countries, and the second page of data`, () => {
       const first = Countries.all({ loadAll: true })[0];
-      const results = Countries.all({ index: 1 });
+      const results = Countries.all({ index: 1, pageSize: 15});
+
       expect(results.length).to.equal(15);
       expect(results.map(country => country.cca3)).to.not.contain(first.cca3);
     });
