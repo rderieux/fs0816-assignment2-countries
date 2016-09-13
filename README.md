@@ -194,4 +194,48 @@ const secondLargePage = Countries.all({index: 1, pageSize: 1000}); // index=0, p
 
 ### Countries.filter(filterBy)
 
-> This
+> Filter down the countries by their common or official name.  When the string is empty it should return all the countries
+
+```js
+const results = Countries.filter('United States');
+```
+
+
+### Countries.get(code)
+
+> Retrieves a single country by it's 3 digit code.  The parameter should throw an error if it's not 3 digits long.  The result should be an object not an array
+
+```js
+const resut = Countries.get('USA');
+```
+
+### Countries.touches(code)
+
+> Retrieve all the countries that touch the country (based on the code entered).  The results should be an array of objects with the countries returned as full objects.  (Hint use the get function once you find the countries that touch)
+
+```js
+const results = Countries.touches('USA');
+```
+
+### Countries.findByRegion(region)
+
+> Retrieves all the countries by their regions.  We'll want to create a constant named 'REGIONS' that contains a unique list of regions.  This will be helpful to determine if a valid region is added.  The result should be an array of countries.
+
+```js
+const results = Countries.findByRegion('Americas');
+```
+
+### Countries.findBySubRegion(subRegion)
+
+> Retrieves all the countries by their sub-region.  We'll want to create a constant named 'SUB_REGIONS' that contains a unique list of sub-regions.  This will be helpful to determine if a valid sub region is added.  The result should be an array of countries.
+
+```js
+const results = Countries.findBySubRegion('Northern America');
+```
+
+
+### Countries.distance(startingCountryCode, endingCountryCode);
+
+> Calculates the distance using the longitude and latitude.
+
+
