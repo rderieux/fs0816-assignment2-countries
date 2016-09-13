@@ -128,7 +128,7 @@ describe('Countries', () => {
 
   });
 
-  // Use the cca4 code
+  // Use the cca3 code
   describe('#distance(startingCountryCode, endingCountryCode)', () => {
 
     // Use something like this to calculate: http://www.geodatasource.com/developers/javascript
@@ -140,7 +140,7 @@ describe('Countries', () => {
 
   });
 
-  // Use the cca4 code
+  // Use the cca3 code
   describe('#subtractArea(startingCountryCode, endingCountryCode)', () => {
 
     it('subtracts the area of two countries, it must return a positive number', () => {

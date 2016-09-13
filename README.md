@@ -55,7 +55,7 @@ console.log(countries);
 
 The country objects should look similar to:
 
-```json
+```js
 {
     name: {
         common: "United States",
@@ -190,3 +190,8 @@ const secondPage = Countries.all({ index: 1 }); // index=1, pageSize=15
 const firstLargePage = Countries.all({ pageSize: 1000}); // index=0, pageSize=1000
 const secondLargePage = Countries.all({index: 1, pageSize: 1000}); // index=0, pageSize=1000
 ```
+
+
+### Countries.filter(filterBy)
+
+> This
