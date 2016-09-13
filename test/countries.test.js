@@ -2,7 +2,7 @@ const Countries = require('../src');
 
 describe('add', () => {
 
-  it'adds 0 to 0 by default', () => {
+  it('adds 0 to 0 by default', () => {
     expect(Countries.add()).to.equal(0);
     expect(Countries.add(1)).to.equal(1);
     expect(Countries.add(1, 2)).to.equal(3);
