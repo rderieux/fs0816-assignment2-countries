@@ -173,7 +173,7 @@ At the `startIndex` item in the array, you'll take `x` number of items where `x 
 | --- | --- | --- | --- |
 | loadAll | Boolean | Ignores the page and index retrieving all the countries | Yes |
 | index | Number (Positive) | The index of the page your on, by default it's 0, and also starts at 0 | Yes |
-| pageSize | Number (Positive) | The number of items that are considered a 'page' | Yes |
+| pageSize | Number (Positive) | The number of items that are considered a 'page'.  The default is 15. | Yes |
 
 
 
