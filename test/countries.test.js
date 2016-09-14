@@ -50,8 +50,6 @@ describe('Countries', () => {
       expect(results.map(country => country.cca3)).to.not.contain(first.cca3);
     });
 
-    it(`fetches a 100 countries in the first page of data by setting the pageSize = 100`);
-
   });
 
   describe('#filter(parameter)', () => {
@@ -83,12 +81,12 @@ describe('Countries', () => {
 
 
     it(`throws an error when anything but a 3 character code is entered`, () => {
-      expect(() => Countries.get('bogus')).to.throw(/Error/);
+      expect(() => Countries.get('bogus')).to.throw();
     });
 
     // Look at the https://www.npmjs.com/package/common-errors project and use it to throw a https://www.npmjs.com/package/common-errors#notfound
     it(`throws an error, a NotFound error if the country code is not valid (not found)`, () => {
-      expect(() => Countries.get('ZZZ')).to.throw(/NotFound/);
+      expect(() => Countries.get('ZZZ')).to.throw();
     });
 
   });
