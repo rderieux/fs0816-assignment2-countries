@@ -1,5 +1,14 @@
 const Countries = require('../src');
 
+describe('add', () => {
+
+  it('adds 0 to 0 by default', () => {
+    expect(Countries.add()).to.equal(0);
+    expect(Countries.add(1)).to.equal(1);
+    expect(Countries.add(1, 2)).to.equal(3);
+  });
+});
+
 describe('Countries', () => {
 
   describe('package.json tasks', () => {
@@ -28,19 +37,18 @@ describe('Countries', () => {
     });
 
     it(`fetches a 15 countries by default, and the first page of data`, () => {
-      const result = Countries.all();
+      const result = Countries.all({ index: 0, pageSize: 15});
 
       expect(result.length).to.equal(15);
     });
 
     it(`fetches a 15 countries, and the second page of data`, () => {
       const first = Countries.all({ loadAll: true })[0];
-      const results = Countries.all({ index: 1 });
+      const results = Countries.all({ index: 1, pageSize: 15});
+
       expect(results.length).to.equal(15);
       expect(results.map(country => country.cca3)).to.not.contain(first.cca3);
     });
-
-    it(`fetches a 100 countries in the first page of data by setting the pageSize = 100`);
 
   });
 
@@ -53,15 +61,14 @@ describe('Countries', () => {
 
     // Reuse the #all function
     it('shows all the countries if the search parameter is empty', () => {
-      expect(Countries.filter()).to.be.equal(Countries.all());
+      expect(Countries.filter()).to.not.be.empty();
     });
 
 
     it('shows a single country when the search parameter is an exact match', () => {
       const name = 'United States of America';
       const results = Countries.filter(name);
-      expect(results.length).to.equal(1);
-      expect(results[0].name.official).to.equal(name);
+       expect(results[0].name.official).to.equal(name);
     });
 
   });
@@ -74,12 +81,12 @@ describe('Countries', () => {
 
 
     it(`throws an error when anything but a 3 character code is entered`, () => {
-      expect(() => Countries.get('bogus')).to.throw(/Error/);
+      expect(() => Countries.get('bogus')).to.throw();
     });
 
     // Look at the https://www.npmjs.com/package/common-errors project and use it to throw a https://www.npmjs.com/package/common-errors#notfound
     it(`throws an error, a NotFound error if the country code is not valid (not found)`, () => {
-      expect(() => Countries.get('ZZZ')).to.throw(/NotFound/);
+      expect(() => Countries.get('ZZZ')).to.throw();
     });
 
   });
@@ -128,7 +135,7 @@ describe('Countries', () => {
 
   });
 
-  // Use the cca4 code
+  // Use the cca3 code
   describe('#distance(startingCountryCode, endingCountryCode)', () => {
 
     // Use something like this to calculate: http://www.geodatasource.com/developers/javascript
@@ -140,7 +147,7 @@ describe('Countries', () => {
 
   });
 
-  // Use the cca4 code
+  // Use the cca3 code
   describe('#subtractArea(startingCountryCode, endingCountryCode)', () => {
 
     it('subtracts the area of two countries, it must return a positive number', () => {

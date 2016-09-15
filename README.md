@@ -55,7 +55,7 @@ console.log(countries);
 
 The country objects should look similar to:
 
-```json
+```js
 {
     name: {
         common: "United States",
@@ -164,7 +164,6 @@ The country objects should look similar to:
 Calculate the startingIndex by using the calculation `startIndex = index * pageSize`. 
 
 At the `startIndex` item in the array, you'll take `x` number of items where `x = pageSize`.  That is considered a page of data.
-   
 
 
 **Settings Parameters**
@@ -173,8 +172,12 @@ At the `startIndex` item in the array, you'll take `x` number of items where `x 
 | --- | --- | --- | --- |
 | loadAll | Boolean | Ignores the page and index retrieving all the countries | Yes |
 | index | Number (Positive) | The index of the page your on, by default it's 0, and also starts at 0 | Yes |
-| pageSize | Number (Positive) | The number of items that are considered a 'page' | Yes |
+| pageSize | Number (Positive) | The number of items that are considered a 'page'.  The default is 15. | Yes |
 
+**Hint**
+
+* Use the default paramters https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
+* Use the Array slice https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
 
 
 **Example Usage**
@@ -184,9 +187,134 @@ const Countries = require('./src');
 
 // Default PageSize
 const firstPage = Countries.all(); // index=0, pageSize=15
-const secondPage = Countries.all({ index: 1 }); // index=1, pageSize=15 
+const secondPage = Countries.all({ index: 1, pageSize=15 }); // index=1, pageSize=15 
 
 // Large pageSize
-const firstLargePage = Countries.all({ pageSize: 1000}); // index=0, pageSize=1000
+const firstLargePage = Countries.all({ index: 0, pageSize: 1000}); // index=0, pageSize=1000
 const secondLargePage = Countries.all({index: 1, pageSize: 1000}); // index=0, pageSize=1000
 ```
+
+
+### Countries.filter(filterBy)
+
+> Filter down the countries by their common or official name.  When the string is empty it should return all the countries
+
+**Hint**
+
+* Use the Array's filter function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+```js
+const Countries = require('./src');
+const results = Countries.filter('United States');
+```
+
+
+### Countries.get(code)
+
+> Retrieves a single country by it's 3 digit code.  The parameter should throw an error if it's not 3 digits long.  The result should be an object not an array
+
+**Hint**
+
+* Use the array filter function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+* Use the array reduce function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+
+**Example Usage**
+```js
+const Countries = require('./src');
+const resut = Countries.get('USA');
+```
+
+### Countries.touches(code)
+
+> Retrieve all the countries that touch the country (based on the code entered).  The results should be an array of objects with the countries returned as full objects.  (Hint use the get function once you find the countries that touch)
+
+**Hint**
+
+* Use the get function you created above to get the countries by their code, and to retrieve the countries that touch
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const results = Countries.touches('USA');
+```
+
+### Countries.findByRegion(region)
+
+> Retrieves all the countries by their regions.  We'll want to create a constant named 'REGIONS' that contains a unique list of regions.  This will be helpful to determine if a valid region is added.  The result should be an array of countries.
+
+**Hint**
+
+* Use the array filter function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const results = Countries.findByRegion('Americas');
+```
+
+### Countries.findBySubRegion(subRegion)
+
+> Retrieves all the countries by their sub-region.  We'll want to create a constant named 'SUB_REGIONS' that contains a unique list of sub-regions.  This will be helpful to determine if a valid sub region is added.  The result should be an array of countries.
+
+**Hint**
+
+* Use the array filter function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const results = Countries.findBySubRegion('Northern America');
+```
+
+
+### Countries.distance(startingCountryCode, endingCountryCode);
+
+> Calculates the distance using the longitude and latitude. The result should be a positive number.
+
+**Hint**
+
+* Use this function to do the calculation(http://www.geodatasource.com/developers/javascript).
+* Use the country's get function you created from above
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const distance = Countries.distance('USA', 'UZB');
+```
+
+### Countries.subtractArea(firstCountryCode, secondCountryCode)
+
+> Subtracts the area from two countries.  The result should be a positive number.
+
+**Hint**
+
+* Use the country's get function
+* Use the Math.abs function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const differenceInArea = Countries.subtractArea('USA', 'UZB');
+``` 
+
+### Countries.withCurrency(currencyCode)
+
+> Finds all countries that utilize a currency.  The result should be an array with the countries.
+
+**Hint**
+
+* Use the array filter function https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+**Example Usage**
+
+```js
+const Countries = require('./src');
+const result = Countries.withCurrency('USD');
+```
+
